@@ -1,0 +1,41 @@
+
+
+div .header{
+    position: fixed;
+    width: 100%;
+    height: 60px;
+    background-color: green;
+    top: 0px;
+    left: 0px;
+    z-index: 99;
+    overflow-x: hidden!important
+}
+
+.fav-icon{
+    width: 80%;
+}
+.fav-icon img{
+    width: 60%;
+    margin: auto;
+    height: 30px;
+}
+.bread{
+  padding-bottom: 15px;
+}
+.header .navbar-toggle{
+    display: none;
+}
+
+
+ @media(max-width: 768px){
+   .header .navbar-toggle{
+        display: block;
+    }
+    .header{
+        position: fixed;
+    }
+    .fav-icon img{
+        width: 100%;
+        margin: auto;
+    }
+}

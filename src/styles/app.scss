@@ -1,0 +1,93 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import './header';
+@import './footer';
+@import './navbar';
+@import './post';
+@import './home';
+@import './navigation';
+@import './admin_header';
+@import './dashboard';
+@import './login';
+
+//global styles
+ body{
+ font-family: $font-family-sans-serif;
+    line-height: $line-height-base;
+    min-height: 100vh;
+    background-color: $body-bg;
+    position: relative;
+    padding-bottom: 200px;
+    overflow-x: hidden!important
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.title{
+    font-weight: bolder;
+}
+.admin{
+    margin-top: 70px;
+}
+.error{
+    color: red;
+}
+
+//date
+.date {
+    font-size: small;
+    font-weight: lighter;
+}
+
+//social share
+.facebook, .whatsapp, .twitter{
+    margin: 0px 40px;
+}
+
+.facebook i{
+    color: rgb(12, 12, 107);
+}
+.whatsapp i{
+    color: rgb(11, 194, 11)
+}
+
+.twitter i{
+    color: lightseagreen
+}
+
+.category-tag{
+    margin-bottom: 10px;
+    background-color: lavender;
+    width: 200px;
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+//ad styles
+
+.post-ad{
+    margin-top: 450px;
+}
+
+.article-ads{
+    width: 300px;
+    height: 200px;
+    background-color: red;
+}
+@media(max-width: 768px){
+    body{
+        padding-bottom: 350px;
+    }
+    .body-margin{
+        margin-top: 70px;
+    }
+}

@@ -1,0 +1,32 @@
+
+.navigate{
+    position: fixed;
+    width: 250px;
+    padding: 15px;
+    top: 50px;
+    bottom: 0;
+    left: 0;
+    background-color: rgb(20, 20, 20);
+    color:lightgray;
+    transition: all 0.3s; 
+    z-index: 99;
+}
+
+.navigate li{
+    color: lightgray;
+    list-style-type: none;
+}
+.navigate h4{
+    border-bottom: 1px solid lightgray;
+}
+
+@media(max-width: 768px){
+    .navigate{
+        left: -250px;
+    }
+}
+
+.open-nav{
+    left: 0px;
+}
+

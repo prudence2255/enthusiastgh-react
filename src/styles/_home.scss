@@ -1,0 +1,66 @@
+
+.title{
+    font-weight: bolder;
+}
+.category-name{
+    background-color: blue;
+    color: white;
+    width: 300px;
+    margin: auto;
+}
+.read-more{
+    padding: 10px 25px;
+    background-color: green;
+    color: white;
+    border-radius: 10px;
+}
+.home-card{
+    height: 280px;
+}
+.home-card img{
+    height: 130px;
+}
+.recent-posts{
+    background-color: green;
+    color: white;
+    padding: 10px 0px;
+}
+
+.first-post{
+    height: 350px;
+}
+
+.first-post img{
+    width: 100%;
+    height: 100%;
+}
+.first-post .meta{
+position: absolute;
+top: 60%;
+left: 5%;
+color: white;
+}
+.first-post .meta h6{
+    font-size: 20px;
+}
+
+ .media-post img{
+    width: 140px;
+    height: 120px;
+}
+.media-post{
+    height: 120px;
+}
+@media(max-width: 768px){
+    .home-card{
+        height: 280px;
+    }
+    .home-card img{
+        height: 150px;
+    }
+    
+    .first-post{
+        height: 250px;
+    } 
+}
+

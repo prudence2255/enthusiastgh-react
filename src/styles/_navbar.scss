@@ -1,0 +1,72 @@
+
+
+
+
+div .navigation{
+    display: flex;
+    flex-direction: row;
+    z-index: 1;
+    background-color: rgb(7, 97, 7);
+    width: 100%;
+    margin-top: 60px;
+    height: auto;
+    overflow-x: hidden!important
+}
+.navigation li{
+    list-style-type: none;
+    color: white;
+}
+.navigation .category{
+    padding: 5px;
+}
+.navigation .category:hover{
+    background-color: grey;
+}
+
+.navigation form{
+    width: 200px;
+}
+
+div .open{
+   display: block;
+    width: 100%;
+    position: fixed;
+ }
+
+.active{
+    background-color: blue;
+}
+
+@media (max-width: 760px){
+    div .navigation{
+        flex-direction: column-reverse;
+        justify-content: initial;
+        display: none;
+        min-height: 100%;
+        padding-top: 20px;
+        margin-top: -40px;
+    }
+    .navigation form {
+        width: 100%;
+    }
+    .navigation .category{
+        width: 100%;
+        border-bottom: 1px solid teal;
+    }
+}
+
+form .search-box, form .search-btn{
+    border-radius: 50px;
+    height: 25px;
+}
+
+div .open{
+   display: block;
+    width: 100%;
+    position: fixed;
+ }
+
+.active{
+    background-color: blue;
+}
+

@@ -1,0 +1,27 @@
+
+.admin-header{
+    position: fixed;
+    height: 50px;
+    width: 100%;
+    top: 0px;
+    background-color: rgb(20, 20, 20);
+    color:lightgray;
+    justify-content: space-around;;
+    z-index: 99;
+}
+
+.admin-header button{
+    color: lightgray;
+}
+
+.admin-btn{
+    display: none;
+}
+@media(max-width: 768px){
+    .admin-btn{
+        display: inline;
+    }
+    .admin-header{
+        height: auto;
+    }
+}

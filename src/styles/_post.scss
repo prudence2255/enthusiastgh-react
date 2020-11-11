@@ -1,0 +1,57 @@
+
+.img-card{
+    height: 350px;
+}
+.img-alt{
+    background-color: lightgray;
+    padding: 5px;
+    border-radius: 20px;
+}
+.post-title{
+    font-weight: bolder;
+}
+
+//admin post form styles
+
+.post-form label{
+    font-size: large;
+    color: white;
+    text-align: center;
+    background-color:blue;
+    width: 200px;
+    margin-top: 15px;
+    border-radius: 10px;
+}
+
+.post-form .edit {
+    color: black;
+    background-color: yellow;
+    width: 200px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+//front end posts styles
+
+.posts-card{
+    height: 280px;
+}
+.post-date{
+    background-color: lightgrey;
+}
+.posts-card img{
+    height: 130px;
+}
+
+
+@media(max-width: 576px){
+    .posts-card{
+        height: 280px;
+    }
+    .posts-card img{
+        height: 180px;
+    }
+    .img-card{
+        height: 200px;
+    }
+}
