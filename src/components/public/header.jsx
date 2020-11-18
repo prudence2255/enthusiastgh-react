@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import Navbar from './navbar';
 
 import {Link, withRouter} from  'react-router-dom';
@@ -11,7 +11,6 @@ const Header = () => {
         e.preventDefault();
         setIsOpen(!isOpen);
     }
-
     return (
      <>
         <div className="header w3-card">
@@ -20,7 +19,7 @@ const Header = () => {
           <FaBars size="25"/>
           </button>
           <button className="btn fav-icon"><Link to="/">
-            <img src={`/fav-icon1.png`} className="img-fluid"/>
+            <img src={`/fav-icon1.png`} className="img-fluid" alt="enthusiastgh.com"/>
           </Link> </button>
         </div>
         </div>

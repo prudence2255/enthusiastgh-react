@@ -6,8 +6,7 @@ import {DataContext} from '../store/store';
 
 const Home = () => {
   const {fetchResults,
-     results, isLoading,
-    error, status,
+     results, isLoading, status,
     } = useContext(DataContext);
     useEffect(() => {
       let isCanceled = false; 
@@ -17,7 +16,7 @@ const Home = () => {
      return () => {
        isCanceled = true;
      };
-     },[]);
+     });
     return (
        <>
           <div className="container-fluid body-margin">

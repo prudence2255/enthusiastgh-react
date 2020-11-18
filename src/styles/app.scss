@@ -17,13 +17,14 @@
 
 //global styles
  body{
- font-family: $font-family-sans-serif;
-    line-height: $line-height-base;
+    font-family: Times, Helvetica, 'Times New Roman', serif;
     min-height: 100vh;
     background-color: $body-bg;
     position: relative;
     padding-bottom: 200px;
-    overflow-x: hidden!important
+    overflow-x: hidden!important;
+    line-height: 160%;
+    color: #1a1a1a;
 }
 
 *{
@@ -33,6 +34,7 @@
 }
 .title{
     font-weight: bolder;
+    color: rgba(10, 10, 10, 0.76)
 }
 .admin{
     margin-top: 70px;

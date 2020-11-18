@@ -10,17 +10,16 @@ div .navigation{
     width: 100%;
     margin-top: 60px;
     height: auto;
-    overflow-x: hidden!important
+    overflow-x: hidden!important;
 }
 .navigation li{
     list-style-type: none;
+    font-size: medium;
     color: white;
 }
-.navigation .category{
-    padding: 5px;
-}
+
 .navigation .category:hover{
-    background-color: grey;
+   text-decoration: none;
 }
 
 .navigation form{
@@ -33,18 +32,16 @@ div .open{
     position: fixed;
  }
 
-.active{
-    background-color: blue;
-}
 
 @media (max-width: 760px){
     div .navigation{
         flex-direction: column-reverse;
-        justify-content: initial;
+        justify-content: space-around;
+        
         display: none;
         min-height: 100%;
         padding-top: 20px;
-        margin-top: -40px;
+        margin-top: -20px;
     }
     .navigation form {
         width: 100%;
@@ -66,7 +63,5 @@ div .open{
     position: fixed;
  }
 
-.active{
-    background-color: blue;
-}
+
 
