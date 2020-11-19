@@ -15,9 +15,6 @@ const Post = (props) => {
       if(!isCanceled){
           fetchPost(`api/archive/posts/${id}/show`)
       }
-      setTimeout(() => {
-        window.scrollTo(50, 50)
-      }, 2000)
         return () => {
             isCanceled = false;
         };
