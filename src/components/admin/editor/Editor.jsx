@@ -3,8 +3,8 @@ import ReactQuill, { Quill } from 'react-quill';
 import "react-quill/dist/quill.snow.css";
 import ImageResize from 'quill-image-resize';
 
+import Axios from 'axios';
 
-import axios from 'axios';
 const __ISMSIE__ = navigator.userAgent.match(/Trident/i) ? true : false;
 //register image resizer
 Quill.register('modules/imageResize', ImageResize);
@@ -28,7 +28,7 @@ class Clipboard extends QuillClipboard {
         if (urlMatches.length > 0) {
             e.preventDefault();
             urlMatches.forEach(link => {
-                axios.get(link)
+                Axios.get(link)
                     .then(payload => {
                         // let title, image, url, description;
                         let title, image, url;
@@ -243,7 +243,7 @@ class QuillEditor extends React.Component {
             }
             formData.append("file", file);
 
-            axios.post('/api/auth/posts/files', formData, config)
+            Axios.post('/api/auth/posts/files', formData, config)
                 .then(response => {
                     if (response.status === 200) {
                         const quill = this.reactQuillRef.getEditor();
@@ -282,7 +282,7 @@ class QuillEditor extends React.Component {
             }
             formData.append("file", file);
 
-            axios.post('/api/auth/posts/files', formData, config)
+            Axios.post('/api/auth/posts/files', formData, config)
                 .then(response => {
                     if (response.status === 200) {
                         const quill = this.reactQuillRef.getEditor();
@@ -318,7 +318,7 @@ class QuillEditor extends React.Component {
             }
             formData.append("file", file);
 
-            axios.post('/api/auth/posts/files', formData, config)
+            Axios.post('/api/auth/posts/files', formData, config)
                 .then(response => {
                     if (response.status === 200) {
 
