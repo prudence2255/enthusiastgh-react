@@ -30,6 +30,11 @@ const Post = (props) => {
           };
       },[])
    
+      useEffect(() => {
+          return () => {     
+          };
+      },[post])
+   
     return(
         <>
              
