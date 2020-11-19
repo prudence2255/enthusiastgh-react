@@ -16,7 +16,7 @@ const Home = () => {
      return () => {
        isCanceled = true;
      };
-     });
+     },[]);
     return (
        <>
           <div className="container-fluid body-margin">

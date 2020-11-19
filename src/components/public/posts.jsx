@@ -3,8 +3,8 @@ import {Link} from 'react-router-dom';
 import {DataContext} from '../store/store';
 import Moment from 'react-moment';
 
-const Posts = () => {
-   const {results, loading } = useContext(DataContext);
+const Posts = ({results}) => {
+   const {loading } = useContext(DataContext);
 
    React.useEffect(() => {
      return () => {}

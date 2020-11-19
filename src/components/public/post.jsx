@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {DataContext} from '../store/store';
 import Posts from './posts';
 import {withRouter} from 'react-router-dom';
@@ -7,13 +7,12 @@ import {FacebookShareButton,
         WhatsappShareButton} from 'react-share';
 
 const Post = (props) => {
-    const { post, results, fetchResults, isLoading, fetchPost, loadMore} = useContext(DataContext);
+    const { post, posts, fetchPosts, isLoading, fetchPost, loadMore} = useContext(DataContext);
     const {id} = props.match.params;
 
     useEffect(() => {
       let isCanceled = false;
       if(!isCanceled){
-          fetchResults(`api/archive/posts`)
           fetchPost(`api/archive/posts/${id}/show`)
       }
       setTimeout(() => {
@@ -23,6 +22,17 @@ const Post = (props) => {
             isCanceled = false;
         };
     }, [id])
+
+    useEffect(() => {
+        let isCanceled = false;
+        if(!isCanceled){
+            fetchPosts(`api/archive/posts`)
+        }
+          return () => {
+              isCanceled = false;
+          };
+      },[])
+   
     return(
         <>
              
@@ -113,14 +123,14 @@ const Post = (props) => {
                </div>
                <div className="row">
            <div className="col-md-6 mx-auto">
-               {results !== 'undefined' && (
+               {posts !== 'undefined' && (
                 <p className="recent-posts text-center">
                         Trending stories
                 </p>
                )}
            </div>     
         </div>
-        <Posts />
+        <Posts results={posts}/>
         <div className="col-md-4 mx-auto text-center">
         <button className="btn w3-green" 
         onClick={() => loadMore('api/archive/posts')}> 

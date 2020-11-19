@@ -6,12 +6,12 @@ import { FiSearch } from 'react-icons/fi';
 
 const Navbar = ({ history, isOpen }) => {
   const [query, setQuery] = useState('');
-  const { fetchResults,
+  const { fetchPosts,
     fetchCategories, categories } = useContext(DataContext);
 
   const search = (e) => {
     e.preventDefault();
-    fetchResults(`api/archive/search?query=${query}`)
+    fetchPosts(`api/archive/search?query=${query}`)
     history.push(`/posts/search`);
   }
 

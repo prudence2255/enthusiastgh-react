@@ -3,11 +3,12 @@ import Axios from 'axios';
 
   const useFrontend = () => {
   const [results, setResults] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [posts, setPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState();
   const [categories, setCategories] = useState([]);
   const [post, setPost] = useState({});
   const [error, setError] = useState(false)
-  const [status, setStatus] = useState('idle')
+  const [status, setStatus] = useState()
   const [hasMore, setHasMore] = useState(true);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(2);
@@ -22,25 +23,41 @@ import Axios from 'axios';
     }
 
   const fetchResults = async(path) => {
-     setStatus('idle')
     setIsLoading(true);
+     setStatus('idle')
      try {
+
      const  result = await Axios.get(`${API_URL}/${path}`, {
          ...headers
      });
       setResults(result.data.data);
       setIsLoading(false);
       setStatus('success')
+
      } catch (e) {  
        setError(true)
-      setIsLoading(false);
+       setIsLoading(false);
      }
-    
          }
     
+    const fetchPosts = async(path) => {
+          setIsLoading(true);
+          setStatus('idle')
+           try {
+           const  result = await Axios.get(`${API_URL}/${path}`, {
+               ...headers
+           });
+            setPosts(result.data.data);
+            setStatus('success');
+            setIsLoading(false)
+           } catch (e) {  
+             setError(true)
+             setIsLoading(false);
+           }
+               }
 
+        
     const fetchCategories = async(path) => {
-      setStatus('idle')
            try {
            const  results = await Axios.get(`${API_URL}/${path}`, {
                ...headers
@@ -64,7 +81,6 @@ import Axios from 'axios';
       setPost(results.data.data);
      } catch (e) {  
        setError(true)
-      setIsLoading(false);
      }
     
          }
@@ -83,7 +99,7 @@ import Axios from 'axios';
           if(page === result.data.meta.last_page){
             setHasMore(false);
           }
-          setResults([...results, ...result.data.data]);
+          setPosts([...posts, ...result.data.data]);
           setLoading(false)
           } catch (e) {  
             console.log(e)
@@ -95,8 +111,8 @@ import Axios from 'axios';
          
 
 
-
     return {
+      posts, fetchPosts,
         fetchResults,
         results, setResults,
         isLoading,

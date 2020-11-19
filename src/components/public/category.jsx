@@ -8,18 +8,22 @@ import Moment from 'react-moment';
 
 const Category = (props) => {
             const {id} = props.match.params;
-    const { results, fetchResults, isLoading, status, loadMore} = useContext(DataContext);
+    const { posts, fetchPosts, isLoading, status, loadMore} = useContext(DataContext);
     React.useEffect(() => {
       let isCanceled = false
       if(!isCanceled){
-        fetchResults(`api/archive/category-posts/${id}`)
+        fetchPosts(`api/archive/category-posts/${id}`)
       }
       return () => {}
     }, [id])
+
+    React.useEffect(() => {
+      return () => {}
+    }, [status])
     return (
         <>
-        <div className="body-margin">
-        {results !== 'undefined' && results.length === 0 && status === 'success' && (
+        <div className="body-margin mt-5">
+        {posts !== 'undefined' && posts.length === 0 && status === 'success' && (
             <div className="text-center col-md-8">There are no posts in this section</div>
             )}
         {isLoading ? (
@@ -36,8 +40,8 @@ const Category = (props) => {
         <div className="container-fluid">
         <div className="row">
             <div className="col-md-6">
-            { results !== undefined  && (
-                results.slice(0, 1).map((post) => {
+            { posts !== undefined  && (
+                posts.slice(0, 1).map((post) => {
                     return (
                         <div key={post.id} className="category-tag">
                             {post.category}
@@ -50,9 +54,9 @@ const Category = (props) => {
       
         <div className="row">
         
-                    { results !== undefined && (
+                    { posts !== undefined && (
 
-                   results.slice(0, 1).map((post) => {
+                   posts.slice(0, 1).map((post) => {
                      return (
                        <div className="col-md-8 mx-auto" key={post.id}>
                         <div className="w3-card first-post">
@@ -79,9 +83,9 @@ const Category = (props) => {
                    
                 ) )}
                     </div>
-                    <Posts />
+                    <Posts results={posts}/>
                     {
-                      results !== 'undefined' && results.length > 0 &&
+                      posts !== 'undefined' && posts.length > 0 &&
                       <div className="col-md-4 mx-auto text-center">
                   <button className="btn w3-green" 
                       onClick={() => loadMore(`api/archive/category-posts/${id}`)}> 

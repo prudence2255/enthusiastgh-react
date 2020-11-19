@@ -4,10 +4,14 @@ import {DataContext} from '../store/store';
 
 
 const Search = () => {
-    const {results, status, isLoading} = useContext(DataContext);
+    const {posts, status, isLoading} = useContext(DataContext);
     React.useEffect(() => {
         return () => {}
-    }, [results])
+    }, [posts])
+
+    React.useEffect(() => {
+        return () => {}
+    }, [status])
     return (
         <>
        <div className="body-margin">
@@ -20,10 +24,10 @@ const Search = () => {
                      </div>
              </div>)
              }
-       {results !== 'undefined' && results.length === 0 && status === 'success' && (
+       {posts !== 'undefined' && posts.length === 0 && status === 'success' && (
             <div className="text-center col-md-8">There are no posts for your search</div>
             )}
-       <Posts />
+       <Posts results={posts}/>
        </div>
         </>
     )
