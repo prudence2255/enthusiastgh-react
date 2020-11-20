@@ -21,9 +21,6 @@ const Category = (props) => {
       return () => {}
     }, [status])
 
-    React.useEffect(() => {
-      return () => {}
-    }, [posts])
     return (
         <>
         <div className="body-margin mt-5">

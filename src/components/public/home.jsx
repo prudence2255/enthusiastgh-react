@@ -9,14 +9,10 @@ const Home = () => {
      results, isLoading, status,
     } = useContext(DataContext);
     useEffect(() => {
-      let isCanceled = false; 
-      if(!isCanceled){
-        fetchResults('api/archive/home');
-      }
-     return () => {
-       isCanceled = true;
-     };
+      fetchResults('api/archive/home');
+     return () => {};
      },[fetchResults]);
+
     return (
        <>
           <div className="container-fluid body-margin">

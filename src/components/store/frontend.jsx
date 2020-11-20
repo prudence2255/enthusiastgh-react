@@ -1,4 +1,4 @@
-import { useState, useCallback} from "react";
+import { useState, useCallback, useMemo} from "react";
 import Axios from 'axios';
 
   const useFrontend = () => {
@@ -13,114 +13,92 @@ import Axios from 'axios';
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(2);
  
-  const API_URL = process.env.NODE_ENV === 'development' ? 
-                'http://localhost:8000' : 'https://enthusiastgh.com';
-                
-//headers
-
-  
-
-  
  
-    const fetchPost = useCallback(
-      async(path) => {
-        const headers = {
-          Accept: 'application/json',
-         "Content-Type": 'application/json'
-        }
-          setStatus('idle')
-         
+
+const API_URL = useMemo(() =>  process.env.NODE_ENV === 'development' ? 
+                            'http://localhost:8000' : 'https://enthusiastgh.com', [])
+ 
+const headers = useMemo(() => ({ Accept: 'application/json',
+                    "Content-Type": 'application/json'}), [])
+
+  const fetchResults = useCallback(async(path) => {
+    setIsLoading(true);
+     setStatus('idle')
+     try {
+     const  result = await Axios.get(`${API_URL}/${path}`, {
+         ...headers
+     });
+      setResults(result.data.data);
+      setIsLoading(false);
+      setStatus('success')
+
+     } catch (e) {  
+       setError(true)
+       setIsLoading(false);
+     }
+         }, [API_URL, headers]);
+
+
+
+
+const fetchPosts = useCallback(async(path) => {
           setIsLoading(true);
-         try {
-         const  results = await Axios.get(`${API_URL}/${path}`, {
-             ...headers
-         });
-         setStatus('success')
-         setIsLoading(false);
-          setPost(results.data.data);
-         } catch (e) {  
-           setError(true)
-         }
-        
-             
-      },
-      [API_URL],
-    )
-  
-    const fetchPosts = useCallback(
-      async(path) => {
-        const headers = {
-          Accept: 'application/json',
-         "Content-Type": 'application/json'
-        }
-          setStatus('idle')
-          setIsLoading(true);
-         try {
-         const  results = await Axios.get(`${API_URL}/${path}`, {
-             ...headers
-         });
-         setStatus('success')
-         setIsLoading(false);
-          setPosts(results.data.data);
-         } catch (e) {  
-           setError(true)
-         }
-        
-             
-      },
-      [API_URL],
-    )
-    const fetchResults = useCallback(
-      async(path) => {
-        const headers = {
-          Accept: 'application/json',
-         "Content-Type": 'application/json'
-        }
-          setStatus('idle')
-          setIsLoading(true);
-         try {
-         const  results = await Axios.get(`${API_URL}/${path}`, {
-             ...headers
-         });
-         setStatus('success')
-         setIsLoading(false);
-          setResults(results.data.data);
-         } catch (e) {  
-           setError(true)
-         }
-        
-             
-      },
-      [API_URL])
-    
-      const fetchCategories = useCallback(
-        async(path) => {
-          const headers = {
-            Accept: 'application/json',
-           "Content-Type": 'application/json'
-          }
-            setStatus('idle')
-            setIsLoading(true);
+           setStatus('idle')
            try {
-           const  results = await Axios.get(`${API_URL}/${path}`, {
+           const  result = await Axios.get(`${API_URL}/${path}`, {
                ...headers
            });
-           setStatus('success')
-           setIsLoading(false);
-            setCategories(results.data.data);
+            setPosts(result.data.data);
+            setIsLoading(false);
+            setStatus('success')
+      
            } catch (e) {  
              setError(true)
+             setIsLoading(false);
            }
-          
+               }, [API_URL, headers]);
+
                
-        },
-        [API_URL])
-        
+       const fetchPost = useCallback(async(path) => {
+               setIsLoading(true);
+                 setStatus('idle')
+                 try {
+                 const  result = await Axios.get(`${API_URL}/${path}`, {
+                     ...headers
+                 });
+                  setPost(result.data.data);
+                  setIsLoading(false);
+                  setStatus('success')
+            
+                 } catch (e) {  
+                   setError(true)
+                   setIsLoading(false);
+                 }
+                     }, [API_URL, headers]);
+
+    const fetchCategories = useCallback(async(path) => {
+                    
+                       try {
+                       const  result = await Axios.get(`${API_URL}/${path}`, {
+                           ...headers
+                       });
+                        setCategories(result.data.data);
+                    
+                  
+                       } catch (e) {  
+                         setError(true)
+                       }
+                           }, [API_URL, headers])                     
+                     
+
+
+
+
+  
+  
+    
+     
          const loadMore = async(path) => {
-          const headers = {
-            Accept: 'application/json',
-           "Content-Type": 'application/json'
-          }
            if(!hasMore) return
            if(loading) return
            setPage(page + 1)
@@ -145,7 +123,7 @@ import Axios from 'axios';
 
 
     return {
-      posts, fetchPosts,
+       posts, fetchPosts,
         fetchResults,
         results, setResults,
         isLoading,
