@@ -19,7 +19,8 @@
  body{
     font-family: Times, Helvetica, 'Times New Roman', serif;
     min-height: 100vh;
-    background-color: $body-bg;
+    //background-color: $body-bg;
+    background-color: red;
     position: relative;
     padding-bottom: 200px;
     overflow-x: hidden!important;
