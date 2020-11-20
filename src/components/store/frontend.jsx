@@ -24,7 +24,6 @@ import Axios from 'axios';
 
   const fetchResults = async(path) => {
     setIsLoading(true);
-    setResults([]);
      setStatus('idle')
      try {
 
@@ -43,7 +42,6 @@ import Axios from 'axios';
     
     const fetchPosts = async(path) => {
           setIsLoading(true);
-          setPosts([]);
           setStatus('idle')
            try {
            const  result = await Axios.get(`${API_URL}/${path}`, {
@@ -73,7 +71,6 @@ import Axios from 'axios';
  
     const fetchPost = async(path) => {
       setStatus('idle')
-      setPost({});
       setIsLoading(true);
      try {
      const  results = await Axios.get(`${API_URL}/${path}`, {
