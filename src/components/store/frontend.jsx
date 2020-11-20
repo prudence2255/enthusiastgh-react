@@ -13,10 +13,9 @@ import Axios from 'axios';
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(2);
  
-  // const API_URL = process.env.NODE_ENV === 'development' ? 
-  //               'http://localhost:8000' : 'https://enthusiastgh.com';
-
- const API_URL = 'https://enthusiastgh.com';               
+  const API_URL = process.env.NODE_ENV === 'development' ? 
+                'http://localhost:8000' : 'https://enthusiastgh.com';
+                
 //headers
 
   const headers = {

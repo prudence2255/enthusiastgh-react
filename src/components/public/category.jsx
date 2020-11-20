@@ -15,7 +15,7 @@ const Category = (props) => {
         fetchPosts(`api/archive/category-posts/${id}`)
       }
       return () => {}
-    }, [id])
+    }, [id, fetchPosts])
 
     React.useEffect(() => {
       return () => {}

@@ -18,7 +18,7 @@ const Post = (props) => {
         return () => {
             isCanceled = false;
         };
-    }, [id])
+    }, [id, fetchPost])
 
     useEffect(() => {
         let isCanceled = false;
@@ -28,7 +28,7 @@ const Post = (props) => {
           return () => {
               isCanceled = false;
           };
-      },[])
+      },[fetchPosts])
    
       useEffect(() => {
           return () => {     
