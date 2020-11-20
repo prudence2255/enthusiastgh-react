@@ -23,7 +23,7 @@ const Header = () => {
           </Link> </button>
         </div>
         </div>
-      <Navbar isOpen={isOpen}/>
+      <Navbar isOpen={isOpen} setIsOpen={setIsOpen}/>
      </>
     )
 }
