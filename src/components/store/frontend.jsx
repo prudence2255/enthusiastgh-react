@@ -1,4 +1,4 @@
-import { useState} from "react";
+import { useState, useCallback} from "react";
 import Axios from 'axios';
 
   const useFrontend = () => {
@@ -18,80 +18,109 @@ import Axios from 'axios';
                 
 //headers
 
-  const headers = {
-      Accept: 'application/json',
-     "Content-Type": 'application/json'
-    }
+  
 
-  const fetchResults = async(path) => {
-    setIsLoading(true);
-    
-     setStatus('idle')
-     try {
-
-     const  result = await Axios.get(`${API_URL}/${path}`, {
-         ...headers
-     });
-      setResults(result.data.data);
-      setIsLoading(false);
-      setStatus('success')
-
-     } catch (e) {  
-       setError(true)
-       setIsLoading(false);
-     }
-         }
-    
-    const fetchPosts = async(path) => {
-          setIsLoading(true);
-         
+  
+ 
+    const fetchPost = useCallback(
+      async(path) => {
+        const headers = {
+          Accept: 'application/json',
+         "Content-Type": 'application/json'
+        }
           setStatus('idle')
-           try {
-           const  result = await Axios.get(`${API_URL}/${path}`, {
-               ...headers
-           });
-            setPosts(result.data.data);
-            setStatus('success');
-            setIsLoading(false)
-           } catch (e) {  
-             setError(true)
-             setIsLoading(false);
-           }
-               }
-
+         
+          setIsLoading(true);
+         try {
+         const  results = await Axios.get(`${API_URL}/${path}`, {
+             ...headers
+         });
+         setStatus('success')
+         setIsLoading(false);
+          setPost(results.data.data);
+         } catch (e) {  
+           setError(true)
+         }
         
-    const fetchCategories = async(path) => {
+             
+      },
+      [API_URL],
+    )
+  
+    const fetchPosts = useCallback(
+      async(path) => {
+        const headers = {
+          Accept: 'application/json',
+         "Content-Type": 'application/json'
+        }
+          setStatus('idle')
+          setIsLoading(true);
+         try {
+         const  results = await Axios.get(`${API_URL}/${path}`, {
+             ...headers
+         });
+         setStatus('success')
+         setIsLoading(false);
+          setPosts(results.data.data);
+         } catch (e) {  
+           setError(true)
+         }
+        
+             
+      },
+      [API_URL],
+    )
+    const fetchResults = useCallback(
+      async(path) => {
+        const headers = {
+          Accept: 'application/json',
+         "Content-Type": 'application/json'
+        }
+          setStatus('idle')
+          setIsLoading(true);
+         try {
+         const  results = await Axios.get(`${API_URL}/${path}`, {
+             ...headers
+         });
+         setStatus('success')
+         setIsLoading(false);
+          setResults(results.data.data);
+         } catch (e) {  
+           setError(true)
+         }
+        
+             
+      },
+      [API_URL])
+    
+      const fetchCategories = useCallback(
+        async(path) => {
+          const headers = {
+            Accept: 'application/json',
+           "Content-Type": 'application/json'
+          }
+            setStatus('idle')
+            setIsLoading(true);
            try {
            const  results = await Axios.get(`${API_URL}/${path}`, {
                ...headers
            });
-             setCategories(results.data.data);
+           setStatus('success')
+           setIsLoading(false);
+            setCategories(results.data.data);
            } catch (e) {  
              setError(true)
            }
           
-               }
- 
-    const fetchPost = async(path) => {
-      setStatus('idle')
-     
-      setIsLoading(true);
-     try {
-     const  results = await Axios.get(`${API_URL}/${path}`, {
-         ...headers
-     });
-     setStatus('success')
-     setIsLoading(false);
-      setPost(results.data.data);
-     } catch (e) {  
-       setError(true)
-     }
-    
-         }
-  
-    
-     
+               
+        },
+        [API_URL])
+        
          const loadMore = async(path) => {
+          const headers = {
+            Accept: 'application/json',
+           "Content-Type": 'application/json'
+          }
            if(!hasMore) return
            if(loading) return
            setPage(page + 1)

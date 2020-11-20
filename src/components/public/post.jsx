@@ -30,10 +30,6 @@ const Post = (props) => {
           };
       },[fetchPosts])
    
-      useEffect(() => {
-          return () => {     
-          };
-      },[post])
    
     return(
         <>
