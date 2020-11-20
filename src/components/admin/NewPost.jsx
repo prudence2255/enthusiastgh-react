@@ -2,7 +2,7 @@ import React, {useState, useContext, useEffect} from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import {withRouter} from 'react-router-dom';
-import Editor from './editor/Editor';
+// import Editor from './editor/Editor';
 import {DataContext} from '../store/store';
 
 const NewPost = ({history, match}) => {
@@ -198,10 +198,10 @@ const NewPost = ({history, match}) => {
                    </div>
                 )}
              <label htmlFor="post_content">Post content</label>
-            <Editor 
+            {/* <Editor 
                  onEditorChange={onEditorChange}
                 onFilesChange={onFilesChange}
-            />
+            /> */}
             <div className="error">{error && 'Content is required'}</div>
         </div>
         <div className="form-group">
