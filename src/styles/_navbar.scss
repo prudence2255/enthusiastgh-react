@@ -37,11 +37,10 @@ div .open{
     div .navigation{
         flex-direction: column-reverse;
         justify-content: space-around;
-        
         display: none;
         min-height: 100%;
         padding-top: 20px;
-        margin-top: -5px;
+        margin-top: -10px;
     }
     .navigation form {
         width: 100%;

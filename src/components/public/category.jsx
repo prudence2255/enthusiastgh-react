@@ -23,7 +23,7 @@ const Category = (props) => {
 
     return (
         <>
-        <div className="body-margin mt-5">
+        <div className="body-margin">
         {posts !== 'undefined' && posts.length === 0 && status === 'success' && (
             <div className="text-center col-md-8">There are no posts in this section</div>
             )}
