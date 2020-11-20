@@ -38,7 +38,7 @@ const Navbar = ({ history, isOpen }) => {
                   padding: '7px 12px',
                 }} style={{
                 color: 'white',
-                fontSize: 16,
+                fontSize: 18,
                 fontWeight: 'bold'
               }}>
                 {category.name}
