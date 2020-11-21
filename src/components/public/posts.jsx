@@ -1,14 +1,13 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
-import {DataContext} from '../store/store';
 import Moment from 'react-moment';
 
-const Posts = ({results}) => {
-   const {loading } = useContext(DataContext);
-
+const Posts = ({results, loading}) => {
+  
    React.useEffect(() => {
      return () => {}
    }, [results])
+
     return(
         <>
         <div className="container-fluid py-3">

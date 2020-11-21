@@ -1,23 +1,42 @@
-import React, {useContext} from 'react';
-import {DataContext} from '../store/store';
+import React, {useState} from 'react';
+import {API_URL, headers} from '../store/store';
+import useFrontend from '../store/frontend';
 import {withRouter, Link} from 'react-router-dom';
 import Posts from './posts';
 import Moment from 'react-moment';
+import Axios from 'axios';
 
 
 
 const Category = (props) => {
-            const {id} = props.match.params;
-    const { posts, fetchPosts, isLoading, status, loadMore} = useContext(DataContext);
+     const [posts, setPosts] = useState([]);
+     const [status, setStatus] = useState();
+    const [isLoading, setIsLoading] = useState(false);
+    const {id} = props.match.params;
+    const {loadMore, loading, results} = useFrontend();
+  const data = [...results, ...posts];
     React.useEffect(() => {
-        fetchPosts(`api/archive/category-posts/${id}`)
+      const fetchPosts = async() => {
+          setStatus(null)
+            setIsLoading(true);
+                 try {
+                 const result = await Axios.get(`${API_URL}/api/archive/category-posts/${id}`, {
+                     ...headers
+                 });
+                  setPosts(result.data.data);
+                  setStatus('success')
+                  setIsLoading(false)
+                 } catch (e) {  
+                   setIsLoading(false);
+                 }
+                     }
+        fetchPosts()
       return () => {}
-    }, [id, fetchPosts])
+    }, [id])
 
     React.useEffect(() => {
       return () => {}
-    }, [status, posts])
-
+    }, [posts])
     return (
         <>
         <div className="body-margin">
@@ -38,7 +57,7 @@ const Category = (props) => {
         <div className="container-fluid">
         <div className="row">
             <div className="col-md-6">
-            { posts !== undefined  && (
+            { posts !== 'undefined'  && (
                 posts.slice(0, 1).map((post) => {
                     return (
                         <div key={post.id} className="category-tag">
@@ -52,7 +71,7 @@ const Category = (props) => {
       
         <div className="row">
         
-                    { posts !== undefined && (
+                    { posts !== 'undefined' && (
 
                    posts.slice(0, 1).map((post) => {
                      return (
@@ -81,9 +100,9 @@ const Category = (props) => {
                    
                 ) )}
                     </div>
-                    <Posts results={posts}/>
+                    <Posts results={data} loading={loading}/>
                     {
-                      posts !== 'undefined' && posts.length > 0 &&
+                      posts !== 'undefined' && posts.length > 1 &&
                       <div className="col-md-4 mx-auto text-center">
                   <button className="btn w3-green" 
                       onClick={() => loadMore(`api/archive/category-posts/${id}`)}> 

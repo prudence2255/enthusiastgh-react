@@ -1,31 +1,59 @@
-import React, {useContext, useEffect} from 'react';
-import {DataContext} from '../store/store';
+import React, {useEffect, useState} from 'react';
+import {headers, API_URL} from '../store/store';
+import useFrontend from '../store/frontend';
 import Posts from './posts';
+import Axios from 'axios';
 import {withRouter} from 'react-router-dom';
 import {FacebookShareButton,
         TwitterShareButton,
         WhatsappShareButton} from 'react-share';
 
 const Post = (props) => {
-    const { post, posts, fetchPosts, isLoading, fetchPost, loadMore} = useContext(DataContext);
+    const [posts, setPosts] = useState([]);
+    const [post, setPost] = useState({});
+    const [isLoading, setIsLoading] = useState(false);
     const {id} = props.match.params;
+    const {loadMore, loading, results} = useFrontend();
+
+    const data = [...posts, ...results];
 
     useEffect(() => {
-          fetchPost(`api/archive/posts/${id}/show`)
+        const fetchPosts = async() => {
+                     try {
+                     const result = await Axios.get(`${API_URL}/api/archive/posts`, {
+                         ...headers
+                     });
+                      setPosts(result.data.data);
+                     } catch (e) {  
+                        console.log(e)
+                     }
+                         }
+          fetchPosts()
         return () => {   
         };
-    }, [id, fetchPost])
+    }, [])
 
     useEffect(() => {
-            fetchPosts(`api/archive/posts`)
+        const fetchPost = async() => {
+                    setIsLoading(true);
+                     try {
+                     const result = await Axios.get(`${API_URL}/api/archive/posts/${id}/show`, {
+                         ...headers
+                     });
+                      setPost(result.data.data);
+                      setIsLoading(false)
+                     } catch (e) {  
+                       setIsLoading(false);
+                     }
+                         }
+          fetchPost()
           return () => {
           };
-      },[fetchPosts])
-   
+      },[id])
+
       useEffect(() => {
-      return () => {
-      };
-  },[post])
+          return () => {}
+      }, [post])
     return(
         <>
              
@@ -123,7 +151,7 @@ const Post = (props) => {
                )}
            </div>     
         </div>
-        <Posts results={posts}/>
+        <Posts results={data} loading={loading}/>
         <div className="col-md-4 mx-auto text-center">
         <button className="btn w3-green" 
         onClick={() => loadMore('api/archive/posts')}> 

@@ -1,17 +1,30 @@
-import React, {useEffect, useContext} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link, withRouter} from 'react-router-dom';
 import Moment from 'react-moment';
-import {DataContext} from '../store/store';
+import {API_URL, headers} from '../store/store';
+import Axios from 'axios';
 
 
 const Home = () => {
-  const {fetchResults,
-     results, isLoading, status,
-    } = useContext(DataContext);
+  const [results, setResults] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+
     useEffect(() => {
-      fetchResults('api/archive/home');
+      const fetchPosts = async() => {
+                setIsLoading(true);
+                 try {
+                 const result = await Axios.get(`${API_URL}/api/archive/home`, {
+                     ...headers
+                 });
+                  setResults(result.data.data);
+                  setIsLoading(false)
+                 } catch (e) {  
+                   setIsLoading(false);
+                 }
+                     }
+        fetchPosts()
      return () => {};
-     },[fetchResults]);
+     },[]);
 
     return (
        <>
@@ -21,9 +34,6 @@ const Home = () => {
            </div>
           <div className="row">
           <div className="col-md-8">
-          {results !== 'undefined' && results.length === 0 && status === 'success' && (
-            <div className="text-center">There are no posts in this section</div>
-          )}
           {
               isLoading ? (
                        <div className="col-md-6 mx-auto text-center py-5">

@@ -1,23 +1,33 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { withRouter, NavLink } from 'react-router-dom';
-import { DataContext } from '../store/store';
+import {headers, API_URL } from '../store/store';
 import { FiSearch } from 'react-icons/fi';
+import Axios from 'axios';
 
 
 const Navbar = ({ history, isOpen, setIsOpen }) => {
   const [query, setQuery] = useState('');
-  const { fetchPosts,
-    fetchCategories, categories } = useContext(DataContext);
+  const [categories, setCategories] = useState([]);
+  
 
   const search = (e) => {
     e.preventDefault();
-    fetchPosts(`api/archive/search?query=${query}`)
+   // fetchPosts(`api/archive/search?query=${query}`)
     history.push(`/posts/search`);
   }
 
 
   useEffect(() => { 
-      fetchCategories('api/archive/categories');
+    const fetchCategories = async() => {
+               try {
+               const result = await Axios.get(`${API_URL}/api/archive/categories`, {
+                   ...headers
+               });
+                setCategories(result.data.data);   
+               } catch (e) {  
+               }
+           }
+      fetchCategories()
     window.addEventListener('scroll', () => {
       if(window.innerWidth > 768){
         setIsOpen(false);
