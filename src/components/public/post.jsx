@@ -11,26 +11,21 @@ const Post = (props) => {
     const {id} = props.match.params;
 
     useEffect(() => {
-      let isCanceled = false;
-      if(!isCanceled){
           fetchPost(`api/archive/posts/${id}/show`)
-      }
-        return () => {
-            isCanceled = false;
+        return () => {   
         };
     }, [id, fetchPost])
 
     useEffect(() => {
-        let isCanceled = false;
-        if(!isCanceled){
             fetchPosts(`api/archive/posts`)
-        }
           return () => {
-              isCanceled = false;
           };
       },[fetchPosts])
    
-   
+      useEffect(() => {
+      return () => {
+      };
+  },[post])
     return(
         <>
              

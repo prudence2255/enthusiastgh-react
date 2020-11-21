@@ -16,18 +16,14 @@ const Navbar = ({ history, isOpen, setIsOpen }) => {
   }
 
 
-  useEffect(() => {
-    let isCanceled = false;
-    if (!isCanceled) {
+  useEffect(() => { 
       fetchCategories('api/archive/categories');
-    }
     window.addEventListener('scroll', () => {
       if(window.innerWidth > 768){
         setIsOpen(false);
       }
     })
     return () => {
-      isCanceled = true;
     };
   })
 

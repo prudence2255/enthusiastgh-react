@@ -10,16 +10,13 @@ const Category = (props) => {
             const {id} = props.match.params;
     const { posts, fetchPosts, isLoading, status, loadMore} = useContext(DataContext);
     React.useEffect(() => {
-      let isCanceled = false
-      if(!isCanceled){
         fetchPosts(`api/archive/category-posts/${id}`)
-      }
       return () => {}
     }, [id, fetchPosts])
 
     React.useEffect(() => {
       return () => {}
-    }, [status])
+    }, [status, posts])
 
     return (
         <>
