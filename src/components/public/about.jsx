@@ -13,24 +13,22 @@ const About = () => {
                     </div>
                     <div className="row">
                         <div className="col-md-8 mx-auto">
-                            <p>
-                            
-            Welcome to Enthusiast Gh, your number one source of news, politics, culture and
-            entertainment
-             from all available sources. We're dedicated to providing you the very best of
-            media products, with an emphasis on authenticity and reliability.
+                        <img src="/bakpata.jpg" alt="Bakpata" width="100" height="80"/>
+        <br />
+        <p>Bakpata Latif</p> <br />
+        <p>
+            I am a graduate from University of Ghana and a highly-skilled software developer.  <br />
+            An energetic, ambitious person who has derive to see things through to completion.<br />
+            I am passionate about what I do and enjoy overcoming challenges.<br />
+            I possess excellent analytical and communication skills and a dedicated approach to working in a highly controlled environment.
+             <br /><br />
+            As a highly-skilled web developer with Laravel and React as my favorite technologies, <br />
+            my greatest passion is to use my technical know-how to benefit other people and organizations.
+            <br />
+            Get in touch<br />
+            Phone: 0243809228, Email: alidubakpatalaif@gmail.com
+        </p>
 
-                            <br />
-                            <br />
-                            We hope you enjoy our media products as much as we enjoy offering them to you. 
-                If you have any questions or comments, please don't hesitate to contact us <a href="mailto:enthusiastgh@gmail.com">@enthusiastgh.com</a>.
-
-                <br />
-                <br />
-            Sincerely,
-
-       Enthusiast Gh
-                            </p>
                         </div>
                     </div>
             </div>
