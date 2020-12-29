@@ -75,7 +75,7 @@ const Category = (props) => {
 
                    posts.slice(0, 1).map((post) => {
                      return (
-                       <div className="col-md-8 mx-auto" key={post.id}>
+                       <div className="col-md-8 mx-auto" key={post.id} data-aos="fade-up">
                         <div className="w3-card first-post">
                        <Link to={`/Archive/${post.id}/${post.title}`} >
                      

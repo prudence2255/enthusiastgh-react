@@ -10,6 +10,9 @@ import './styles/w3.css';
 import './styles/app.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import reportWebVitals from './reportWebVitals';
+import AOS from "aos";
+import "aos/dist/aos.css";
+AOS.init();
 
 
 function App() {

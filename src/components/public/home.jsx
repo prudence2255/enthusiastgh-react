@@ -47,7 +47,7 @@ const Home = () => {
              results.map((item) => {
                
                return(
-                 <div className="col-md-12 offset-md-1" key={item.id}>
+                 <div className="col-md-12 offset-md-1" key={item.id} data-aos="fade-right">
                     <div className="row my-2">
                           <h5 className="p-1 text-center category-name">{item.name}</h5>
                     </div>
@@ -86,7 +86,7 @@ const Home = () => {
                     { 
                       item.posts?.slice(1).map((post) => {
                        return (
-                          <div className="col-md-4 col-sm-4" key={post.id}>
+                          <div className="col-md-4 col-sm-4" key={post.id} data-aos="fade-left">
                           <div className=" w3-white d-block d-lg-none  my-3 home-post media-post"  key={post.id}>
                           <div className="media">
                           <Link to={`/Archive/${post.id}/${post.title}`} >

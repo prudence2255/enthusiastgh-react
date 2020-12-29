@@ -1,6 +1,6 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
-
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;1,300&display=swap');
 // Variables
 @import 'variables';
 
@@ -17,14 +17,14 @@
 
 //global styles
  body{
-    font-family: Times, Helvetica, 'Times New Roman', serif;
+    font-family: 'OPen sans', 'Times New Roman', Times, serif;
     min-height: 100vh;
     background-color: $body-bg;
     position: relative;
     padding-bottom: 200px;
     overflow-x: hidden!important;
-    line-height: 160%;
-    color: #1a1a1a;
+    color: $gray-900;
+    font-size: 16px;
 }
 
 *{
